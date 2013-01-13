@@ -17,22 +17,13 @@ import com.vexsoftware.votifier.model.VoteListener;
 
 import net.milkbowl.vault.economy.Economy;
 
-/**
- * A VoteListener that rewards via iConomy.
- * 
- * @author Blake Beaupain
- */
 public class iConomyListener implements VoteListener {
-
+	
 	/** The logger instance. */
 	private static Logger logger = Logger.getLogger("iConomyListener");
 
-	/** The amount to reward. */
 	private int amount = 100;
-
-	/**
-	 * Instantiates a new iConomy listener.
-	 */
+	
 	public iConomyListener() {
 		Properties props = new Properties();
 		try {
@@ -80,10 +71,11 @@ public class iConomyListener implements VoteListener {
 		
 		
 		if (player != null){
-		economy.depositPlayer(player.getName(), amount);
-		player.sendMessage("Thanks for voting on " + vote.getServiceName() + "!");
-		player.sendMessage(amount + " has been added to your iConomy balance.");
+			this.server.broadcastMessage("The server was voted for by " + player.getName() + "!");
+			economy.depositPlayer(player.getName(), amount);
+			player.sendMessage("Thanks for voting on " + vote.getServiceName() + "!");
+			player.sendMessage(amount + " has been added to your iConomy balance.");
 		
-			}
+		}
 	}
 }
